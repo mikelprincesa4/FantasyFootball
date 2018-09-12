@@ -1,8 +1,10 @@
+import java.util.ArrayList;
 
 public class Player {
-	String name;		//player name
-	String team;		//team
-	String position;	//position
-	int totPnts;		//total fantasy points during season
-	int posRank;		//position rank
+	String  name;									//name
+	String 	team;									//team
+	String 	position;								//position
+	int		posRank;								//position rank
+	ArrayList<Integer> totPnts = new ArrayList();	//total fantasy points during season
+	
 }
