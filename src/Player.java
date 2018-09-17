@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Player {
-	String  name;									//name
+	String  firstName, lastName;					//name
 	String 	team;									//team
 	String 	position;								//position
 	int		posRank;								//position rank

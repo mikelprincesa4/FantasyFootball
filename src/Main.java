@@ -6,7 +6,7 @@ public class Main {
 	
 	public static File	f1 = new File("2017.txt");
 	public static int	playerCount;	
-	public static Player[] players = new Player[playerCount];
+	public static List<Player> players = new ArrayList<Player>();
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		playerCount = countPlayers(f1);
@@ -24,18 +24,24 @@ public class Main {
 		
 		while (stdin.hasNextLine()) {
 			unformatted = stdin.nextLine();
-			makePlayer(unformatted, playerCount, curPlayerNum);
-			curPlayerNum++;
+			makePlayer(unformatted, playerCount);
 			
 		}
 		stdin.close();
 	}
 	
-	public static void makePlayer(String unformatted, int playerCount, int curNum) {
-		String 	 formatted;
-		
+	public static void makePlayer(String unformatted, int playerCount) {
+		String	formatted;
+		String	firstName, lastName, team, position;
+		int		playerNum, posRank, totPnts;
+		Scanner	s = new Scanner(unformatted);
+		s.split("[\\s\\-\\.\\'\\?\\,\\_\\@]+");
 		formatted = unformatted.replace('*','\\');			// Replace * with \ for formatting purposes
-		players[curNum] = new Player(); // LEFT OFF HERE. BEGIN PARSING STRING TO POPULATE PLAYER INFORMATION 	
+		playerNum = s.nextInt();
+		firstName = s.next();
+		lastName  = s.next();
+		
+		//players[curNum] = new Player(); // LEFT OFF HERE. BEGIN PARSING STRING TO POPULATE PLAYER INFORMATION 	
 		
 	}
 	
