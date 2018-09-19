@@ -32,14 +32,22 @@ public class Main {
 	
 	public static void makePlayer(String unformatted, int playerCount) {
 		String	formatted;
-		String	firstName, lastName, team, position;
+		String	firstName, lastName, team, position, skip;
 		int		playerNum, posRank, totPnts;
 		Scanner	s = new Scanner(unformatted);
-		s.split("[\\s\\-\\.\\'\\?\\,\\_\\@]+");
+		
 		formatted = unformatted.replace('*','\\');			// Replace * with \ for formatting purposes
-		playerNum = s.nextInt();
-		firstName = s.next();
-		lastName  = s.next();
+		s.useDelimiter("[\\s\\-\\.\\*\\\\?\\,\\+\\_\\@]+");
+		playerNum 	= s.nextInt();
+		firstName 	= s.next();
+		lastName  	= s.next();
+		skip	  	= s.next();
+		team	 	= s.next();
+		System.out.println(playerNum);
+		System.out.println(firstName);
+		System.out.println(lastName);
+		System.out.println(skip);
+		System.out.println(team);
 		
 		//players[curNum] = new Player(); // LEFT OFF HERE. BEGIN PARSING STRING TO POPULATE PLAYER INFORMATION 	
 		
