@@ -4,32 +4,32 @@ import java.util.*;
 
 public class Main {
 	
-	public static File	f1 = new File("2017.txt");
-	public static int	playerCount;	
-	public Player[] players = new Player[playerCount]; // NEED TO GET NUMBER OF PLAYERS BEFORE THIS
+	public static File	f1 			= new File("2017.txt");
+	static Player[] 	players 	= new Player[];
 	
 	public static void main(String[] args) throws FileNotFoundException {
-		playerCount = countPlayers(f1);
-		readStats(f1);
-	}
-	
-	public static void readStats(File fileName) throws FileNotFoundException {
-		Scanner stdin 	= new Scanner(fileName);
-		String	ignore1 = stdin.nextLine();		// Ignores first line of text (table labels in CSV)
-		String	ignore2 = stdin.nextLine();		// Ignores second line of text (table labels in CSV)
-				ignore1 = null;					// Free up memory
-				ignore2 = null;					// Free up memory
-		String	unformatted;
-		int		curPlayerNum = 0;
+		String ignore1, ignore2, unformatted;
+		Scanner stdin 		= new Scanner(f1);
+		int	playerCount 	= countPlayers(f1);
+		int curPlayerNum	= 0;
+		
+		
+		ignore1 	= stdin.nextLine();		// Ignores first line of text (table labels in CSV)
+		ignore2 	= stdin.nextLine();		// Ignores second line of text (table labels in CSV)
+		ignore1 	= null;					// Free up memory
+		ignore2 	= null;					// Free up memory
+		unformatted = stdin.nextLine();
 		
 		while (stdin.hasNextLine()) {
-			unformatted = stdin.nextLine();
-			makePlayer(unformatted, playerCount, curPlayerNum); // METHODS INSIDE OF METHODS IS NOT ALLOWED, MUST CHANGE
+			
+			makePlayer(unformatted, playerCount, curPlayerNum);
 			curPlayerNum++;
 			
 		}
 		stdin.close();
+		
 	}
+
 	
 	public static void makePlayer(String unformatted, int playerCount, int curPlayerNum) {
 		String	formatted;
