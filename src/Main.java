@@ -6,7 +6,7 @@ public class Main {
 	
 	public static File	f1 = new File("2017.txt");
 	public static int	playerCount;	
-	public static List<Player> players = new ArrayList<Player>();
+	public Player[] players = new Player[playerCount]; // NEED TO GET NUMBER OF PLAYERS BEFORE THIS
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		playerCount = countPlayers(f1);
@@ -24,13 +24,14 @@ public class Main {
 		
 		while (stdin.hasNextLine()) {
 			unformatted = stdin.nextLine();
-			makePlayer(unformatted, playerCount);
+			makePlayer(unformatted, playerCount, curPlayerNum); // METHODS INSIDE OF METHODS IS NOT ALLOWED, MUST CHANGE
+			curPlayerNum++;
 			
 		}
 		stdin.close();
 	}
 	
-	public static void makePlayer(String unformatted, int playerCount) {
+	public static void makePlayer(String unformatted, int playerCount, int curPlayerNum) {
 		String	formatted;
 		String	firstName, lastName, team, position, skip;
 		int		playerNum, posRank, totPnts;
@@ -38,16 +39,20 @@ public class Main {
 		
 		formatted = unformatted.replace('*','\\');			// Replace * with \ for formatting purposes
 		s.useDelimiter("[\\s\\-\\.\\*\\\\?\\,\\+\\_\\@]+");
-		playerNum 	= s.nextInt();
-		firstName 	= s.next();
-		lastName  	= s.next();
-		skip	  	= s.next();
-		team	 	= s.next();
-		System.out.println(playerNum);
-		System.out.println(firstName);
-		System.out.println(lastName);
+		players[curPlayerNum] = new Player();
+		playerNum = s.nextInt();
+		players[curPlayerNum].setFirstName(s.next());
+		players[curPlayerNum].setLastName(s.next());
+		skip = s.next();
+		players[curPlayerNum].setTeam(s.next());
+		System.out.println(players[curPlayerNum].getFirstName());
+		System.out.println(players[curPlayerNum].getLastName());
 		System.out.println(skip);
-		System.out.println(team);
+		System.out.println(players[curPlayerNum].getTeam());
+		/*players[curPlayerNum].setLastName(s.next());
+		skip	  	= s.next();
+		players[curPlayerNum].setTeam(s.next());
+		*/
 		
 		//players[curNum] = new Player(); // LEFT OFF HERE. BEGIN PARSING STRING TO POPULATE PLAYER INFORMATION 	
 		
