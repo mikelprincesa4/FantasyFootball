@@ -7,14 +7,14 @@ public class Player {
 	private int		posRank;								//position rank
 	private int		totPts;									//total fantasy points during season
 	
-	/*public Player(String firstName, String lastName, String team, String position, int posRank, int totPts) {
+	public Player(String firstName, String lastName, String team) { // String position, int posRank, int totPts) {
 		this.firstName 	= firstName;
 		this.lastName	= lastName;
 		this.team		= team;
-		this.position	= position;
-		this.posRank	= posRank;
-		this.totPts		= totPts;
-	}*/
+		//this.position	= position;
+		//this.posRank	= posRank;
+		//this.totPts		= totPts;
+	}
 
 	public String getFirstName() {
 		return firstName;

@@ -4,14 +4,15 @@ import java.util.*;
 
 public class Main {
 	
-	public static File	f1 			= new File("2017.txt");
-	static Player[] 	players 	= new Player[];
+	public static File				f1 		= new File("2017.txt");
+	static Player[] 			players;
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String ignore1, ignore2, unformatted;
 		Scanner stdin 		= new Scanner(f1);
 		int	playerCount 	= countPlayers(f1);
 		int curPlayerNum	= 0;
+		players = new Player[playerCount];
 		
 		
 		ignore1 	= stdin.nextLine();		// Ignores first line of text (table labels in CSV)
@@ -39,28 +40,23 @@ public class Main {
 		
 		formatted = unformatted.replace('*','\\');			// Replace * with \ for formatting purposes
 		s.useDelimiter("[\\s\\-\\.\\*\\\\?\\,\\+\\_\\@]+");
-		players[curPlayerNum] = new Player();
-		playerNum = s.nextInt();
-		players[curPlayerNum].setFirstName(s.next());
-		players[curPlayerNum].setLastName(s.next());
-		skip = s.next();
-		players[curPlayerNum].setTeam(s.next());
+		playerNum 	= s.nextInt();
+		firstName 	= s.next();
+		lastName  	= s.next();
+		skip 		= s.next();
+		team		= s.next();
+		players[curPlayerNum] = new Player (firstName,lastName,team);
 		System.out.println(players[curPlayerNum].getFirstName());
 		System.out.println(players[curPlayerNum].getLastName());
 		System.out.println(skip);
-		System.out.println(players[curPlayerNum].getTeam());
-		/*players[curPlayerNum].setLastName(s.next());
-		skip	  	= s.next();
-		players[curPlayerNum].setTeam(s.next());
-		*/
-		
-		//players[curNum] = new Player(); // LEFT OFF HERE. BEGIN PARSING STRING TO POPULATE PLAYER INFORMATION 	
+		System.out.println(players[curPlayerNum].getTeam());	
 		
 	}
 	
-	public static int countPlayers(File fileName) throws FileNotFoundException {
+	public static int countPlayers(File fileName) throws FileNotFoundException{
 		int 	lineCount 	= 0;
-		Scanner stdin 		= new Scanner(fileName);
+		Scanner stdin = new Scanner(fileName);
+		
 		while(stdin.hasNextLine()) {
 			lineCount++;
 			stdin.nextLine();
