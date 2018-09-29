@@ -21,11 +21,10 @@ public class Main {
 		ignore2 	= null;					// Free up memory
 		unformatted = stdin.nextLine();
 		
-		while (stdin.hasNextLine()) {
-			
+		while (stdin.hasNextLine()) {		// Populate Player[]
 			makePlayer(unformatted, playerCount, curPlayerNum);
-			curPlayerNum++;
-			
+			unformatted = stdin.nextLine();
+			curPlayerNum++;	
 		}
 		stdin.close();
 		
@@ -34,23 +33,35 @@ public class Main {
 	
 	public static void makePlayer(String unformatted, int playerCount, int curPlayerNum) {
 		String	formatted;
-		String	firstName, lastName, team, position, skip;
-		int		playerNum, posRank, totPnts;
+		String	firstName, lastName, team, position, skip, posTemp;
+		int		playerNum, posRank;
 		Scanner	s = new Scanner(unformatted);
 		
 		formatted = unformatted.replace('*','\\');			// Replace * with \ for formatting purposes
-		s.useDelimiter("[\\s\\-\\.\\*\\\\?\\,\\+\\_\\@]+");
-		playerNum 	= s.nextInt();
-		firstName 	= s.next();
-		lastName  	= s.next();
-		skip 		= s.next();
-		team		= s.next();
-		players[curPlayerNum] = new Player (firstName,lastName,team);
+		s.useDelimiter("[\\s\\*\\\\?\\,\\+\\_\\@]+");
+		playerNum 		= s.nextInt();
+		firstName 		= s.next();
+		lastName  		= s.next();
+		skip 			= s.next();
+		team			= s.next();
+		posTemp			= s.next();
+		if (posTemp == "") {								// Correct when player has no position listed
+			position	= "n/a";
+		} else {
+			position	= posTemp;
+		}
+		s.useDelimiter(",");
+		for (int i=0; i < 24; i++) {
+			skip 	= s.next();
+		}
+		posRank		= s.nextInt();
+		players[curPlayerNum] = new Player (firstName,lastName,team, position, posRank);
+		
 		System.out.println(players[curPlayerNum].getFirstName());
 		System.out.println(players[curPlayerNum].getLastName());
-		System.out.println(skip);
-		System.out.println(players[curPlayerNum].getTeam());	
-		
+		System.out.println(players[curPlayerNum].getTeam());
+		System.out.println(players[curPlayerNum].getPosition());
+		System.out.println(players[curPlayerNum].getPosRank());
 	}
 	
 	public static int countPlayers(File fileName) throws FileNotFoundException{
