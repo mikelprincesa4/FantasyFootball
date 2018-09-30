@@ -5,7 +5,7 @@ import java.util.*;
 public class Main {
 	
 	public static File				f1 		= new File("2017.txt");
-	static Player[] 				players;
+	static List<Player> 			players;
 	
 	public static void main(String[] args) throws FileNotFoundException {
 		String ignore1, ignore2, unformatted;
@@ -13,7 +13,7 @@ public class Main {
 		Scanner usrin		= new Scanner(System.in);
 		int	playerCount 	= countPlayers(f1);
 		int curPlayerNum	= 0;
-		players 			= new Player[playerCount];
+		players 			= new ArrayList<Player>();
 				
 		ignore1 	= stdin.nextLine();										// Ignores first line of text (table labels in CSV)
 		ignore2 	= stdin.nextLine();										// Ignores second line of text (table labels in CSV)
@@ -31,14 +31,21 @@ public class Main {
 			curPlayerNum++;	
 		}
 		stdin.close();
-		
+		for (Player player : players) {
+			System.out.println(player.getFirstName());
+			System.out.println(player.getLastName());
+			System.out.println(player.getPosition());
+			System.out.println(player.getTeam());
+			System.out.println(player.getPosRank());
+		}
 	}
 	
 	public static void makePlayer(String unformatted, int playerCount, int curPlayerNum) {
-		String	formatted;
+		String	formatted, fullName;
 		String	firstName, lastName, team, position, skip;
 		int		playerNum, posRank;
 		Scanner	s = new Scanner(unformatted);
+		Player  tempPlayer;
 		
 		formatted = unformatted.replace('*','\\');							// Replace * with \ for formatting purposes
 		s.useDelimiter("[\\s\\*\\\\?\\,\\+\\_\\@]+");
@@ -53,7 +60,9 @@ public class Main {
 			skip 		= s.next();	
 		}
 		posRank			= s.nextInt();
-		players[curPlayerNum] = new Player (firstName,lastName,team, position, posRank);
+		tempPlayer = new Player (firstName,lastName,team, position, posRank);
+		players.add(tempPlayer);
+		
 	}
 	
 	public static int countPlayers(File fileName) throws FileNotFoundException{
