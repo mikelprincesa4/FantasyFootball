@@ -31,13 +31,8 @@ public class Main {
 			curPlayerNum++;	
 		}
 		stdin.close();
-		for (Player player : players) {
-			System.out.println(player.getFirstName());
-			System.out.println(player.getLastName());
-			System.out.println(player.getPosition());
-			System.out.println(player.getTeam());
-			System.out.println(player.getPosRank());
-		}
+		sortPlayers(players);
+		
 	}
 	
 	public static void makePlayer(String unformatted, int playerCount, int curPlayerNum) {
@@ -77,4 +72,15 @@ public class Main {
 		return lineCount-2;
 	}
 
+	public static void sortPlayers(List<Player> players) {
+			Collections.sort(players, new Comparator<Player>() {
+
+				@Override
+				public int compare(Player o1, Player o2) {
+					int res =  o1.getLastName().compareToIgnoreCase(o2.getLastName());
+		            if (res != 0)
+		                return res;
+		            return o1.getFirstName().compareToIgnoreCase(o2.getFirstName());
+				}});		
+	}
 }
